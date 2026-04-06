@@ -1,37 +1,32 @@
+import java.util.*;
+
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieIds = {"BG101", "BG150", "BG205", "BG300"};
+        List<String> bogieIds = new ArrayList<>();
 
-        String key = "BG205";
-
-        int low = 0;
-        int high = bogieIds.length - 1;
-        boolean found = false;
-
-        while (low <= high) {
-
-            int mid = (low + high) / 2;
-
-            int result = bogieIds[mid].compareTo(key);
-
-            if (result == 0) {
-                found = true;
-                break;
-            } else if (result < 0) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
+        try {
+            if (bogieIds.isEmpty()) {
+                throw new IllegalStateException("No bogies available for search");
             }
-        }
 
-        if (found) {
-            System.out.println("Bogie ID found");
-        } else {
-            System.out.println("Bogie ID not found");
+            String searchKey = "BG101";
+            boolean found = false;
+
+            for (String id : bogieIds) {
+                if (id.equals(searchKey)) {
+                    found = true;
+                    break;
+                }
+            }
+
+            System.out.println(found ? "Bogie found" : "Bogie not found");
+
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
