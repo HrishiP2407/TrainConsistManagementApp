@@ -1,16 +1,26 @@
-import java.util.Arrays;
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieTypes = {"Sleeper", "AC Chair", "First Class", "Cargo"};
+        String[] bogieIds = {"BG101", "BG205", "BG150", "BG300"};
 
-        Arrays.sort(bogieTypes);
+        String searchKey = "BG150";
 
-        System.out.println("Sorted Bogie Types:");
-        System.out.println(Arrays.toString(bogieTypes));
+        boolean found = false;
+
+        for (String id : bogieIds) {
+            if (id.equals(searchKey)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("Bogie ID found");
+        } else {
+            System.out.println("Bogie ID not found");
+        }
     }
 }
