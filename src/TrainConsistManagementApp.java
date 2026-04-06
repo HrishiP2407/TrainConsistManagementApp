@@ -4,16 +4,27 @@ public class TrainConsistManagementApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        String[] bogieIds = {"BG101", "BG205", "BG150", "BG300"};
+        String[] bogieIds = {"BG101", "BG150", "BG205", "BG300"};
 
-        String searchKey = "BG150";
+        String key = "BG205";
 
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (String id : bogieIds) {
-            if (id.equals(searchKey)) {
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int result = bogieIds[mid].compareTo(key);
+
+            if (result == 0) {
                 found = true;
                 break;
+            } else if (result < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
