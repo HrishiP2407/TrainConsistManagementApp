@@ -1,37 +1,26 @@
-class CargoSafetyException extends RuntimeException {
-    CargoSafetyException(String message) {
-        super(message);
-    }
-}
-
-class GoodsBogie {
-    String type;
-    String cargo;
-
-    GoodsBogie(String type, String cargo) {
-        if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
-            throw new CargoSafetyException("Unsafe cargo assignment!");
-        }
-        this.type = type;
-        this.cargo = cargo;
-    }
-}
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("=== Train Consist Management App ===");
 
-        try {
-            GoodsBogie b1 = new GoodsBogie("Cylindrical", "Petroleum");
-            GoodsBogie b2 = new GoodsBogie("Rectangular", "Petroleum");
+        int[] capacities = {72, 60, 40, 80};
 
-            System.out.println("Bogies assigned successfully");
-        } catch (CargoSafetyException e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            System.out.println("Operation completed");
+        for (int i = 0; i < capacities.length - 1; i++) {
+            for (int j = 0; j < capacities.length - i - 1; j++) {
+
+                if (capacities[j] > capacities[j + 1]) {
+
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.println("Sorted Capacities:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
         }
     }
 }
