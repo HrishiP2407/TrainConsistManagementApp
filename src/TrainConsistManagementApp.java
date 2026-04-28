@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.LinkedList;
 
 public class TrainConsistManagementApp {
 
@@ -6,27 +6,20 @@ public class TrainConsistManagementApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        List<String> bogieIds = new ArrayList<>();
+        LinkedList<String> train = new LinkedList<>();
 
-        try {
-            if (bogieIds.isEmpty()) {
-                throw new IllegalStateException("No bogies available for search");
-            }
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-            String searchKey = "BG101";
-            boolean found = false;
+        train.add(2, "Pantry Car");
 
-            for (String id : bogieIds) {
-                if (id.equals(searchKey)) {
-                    found = true;
-                    break;
-                }
-            }
+        train.removeFirst();
+        train.removeLast();
 
-            System.out.println(found ? "Bogie found" : "Bogie not found");
-
-        } catch (IllegalStateException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        System.out.println("Final Train Consist:");
+        System.out.println(train);
     }
 }
